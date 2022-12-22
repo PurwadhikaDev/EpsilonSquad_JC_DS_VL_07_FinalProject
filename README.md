@@ -35,10 +35,11 @@ Berdasarkan dari latar belakang dan konteks permasalahan yang telah dijabarkan d
 # Data Understanding
 *   Dataset merupakan data jumlah penyewaan sepeda pada tahun 2011-2012 di Amerika
 *   Setiap baris data merepresentasikan informasi terkait penyewaan sepeda per hari
+*   
 **Attributes Information**
 | **Attribute** | **Data Type** | **Description** |
 | --- | --- | --- |
-| dteday | Datetime | date |
+| dteday | Datetime | Tanggal |
 | hum | Float | Normalized humidity. The values are divided to 100 (max) |
 | weathersit | Integer |  weather  <br>1 =  Clear, Few clouds, Partly cloudy, Partly cloudy<br>2 = Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist<br>3 = Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain +   Scattered clouds<br>4 = Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog|
 | holiday | Integer | holiday or not |
@@ -58,5 +59,36 @@ Berdasarkan dari latar belakang dan konteks permasalahan yang telah dijabarkan d
 * Melakukan encoding pada feature weathersit, season, dan weekday
 
 # Conclusion & Recommendation
-*   Berdasarkan pemodelan yang telah dilakukan, jam merupakan fitur yang paling berpengaruh terhadap jumlah rental sepeda, dilanjutkan dengan tahun dan hari.
-*   Metrik evaluasi yang digunakan pada model adalah nilai RMSE, MAE & MAPE. Jika ditinjau dari nilai RMSE yang dihasilkan oleh model, yaitu sebesar 42.9, kita dapat menyimpulkan bahwa bila nanti model yang kita buat ini digunakan untuk memperkirakan jumlah rental sepeda baru pada rentang nilai seperti yang dilatih terhadap model (maksimal jumlah rental sepeda 645), maka perkiraan jumlah rental sepedanya rata-rata akan meleset kurang lebih sebesar 42.9 dari jumlah rental sepeda yang mungkin seharusnya. Tetapi, tidak menutup kemungkinan juga prediksinya meleset lebih jauh karena bias yang dihasilkan model masih cukup tinggi bila dilihat dari visualisasi antara jumlah rental sepeda aktual dan prediksi.
+**Data Analytics Executive Summary**
+
+* Terdapat bukti yang kuat bahwa user dari layanan Capital Bikeshare di Washington D.C terbagi menjadi dua segmen dengan behavior yang berbeda dimana 81% user adalah Member atau Registered User sedangkan sisanya adalah Casual User. 
+* Registered user menggunakan layanan sebagai sarana commuter untuk daily basis sedangkan casual user menggunakannya untuk sarana olahraga / rekreasi.
+* Casual user berjumlah lebih sedikit namun memiliki durasi bersepeda lebih tinggi. 
+* Casual user kebanyakan akan berkumpul di beberapa titik ketika hari libur / weekend.
+* Terdapat korelasi yang kuat antara suhu yang dirasakan dengan jumlah penyewaan. User lebih prefer untuk bersepeda di kondisi hangat. 
+* Terdapat ketimpangan antar dock yang terbangun. 
+
+**Modelling Results Executive Summary**
+
+*   Apabila diasumsikan perusahaan dalam keadaan business-as-usual menerapkan model linear regression dengan nilai RMSE 112, lalu perusahaan menggunakan model kami dengan nilai RMSE 79. Maka, perusahaan akan menerima benefit dengan selisih 33 unit. Jika diasumsikan kerugian dengan melihat median durasi rental yaitu selama 10 menit, dengan harga dasar 0,05 dollar/menit. Maka opportunity cost setiap sepedanya adalah 3 dollar/perjam. Sehingga, 33 X 3 dolar adalah 99. Perusahaan bisa menghindari kerugian sebesar 99 dolar/jamnya. Maka dalam sehari (dengan mempertimbangkan jam sibuk 10 jam/hari) perusahaan akan menghindari kerugian sebesar 990 dollar.
+*   Berdasarkan feature importance, fitur 'hour' dan 'temp' dan 'workingday' menjadi hal yang paling berpengaruh terhadap total demand.
+* Metrik evaluasi yang digunakan pada model adalah nilai RMSE & MAPE. Jika ditinjau dari nilai RMSE setelah  hyperparameter tuning, didapatkan hasil sebesar ~79, dapat disimpulkan bahwa bila nanti model ini digunakan untuk memperkirakan demand sepeda di washington d.c atau daerah degnan kondisi yang serupa pada rentang nilai maksimal 1000 demand/jam, maka perkiraan demand rata-rata akan meleset kurang lebih sebesar 79 buah sepeda dari demand seharusnya. Tetapi, tidak menutup kemungkinan juga prediksinya meleset lebih jauh.
+
+**Rekomendasi Berdasarkan Hasil Analisa**
+
+* Meningkatkan *registered user* dengan menjalin kerjasama dengan perusahaan di sekitar dock dengan program bike to work. Peningkatan awareness melalui kampanye perubahan iklim bisa diterapkan. 
+* Menarik *registered user* baru menggunakan skema level beserta bonusnya (Silver, Gold, Platinum) berdasarkan jarak tempuh, waktu tempuh, dll sebagai Marketing Initiative oleh Team Marketing. 
+* Melakukan pengembangan dock di titik titik teramai yang memiliki potensi untuk meningkatkan pengguna baru.
+* Melakukan perubahan harga *basic rental* sesuai dengan fluktuasi *peak hour* atau ketika adanya *event* tertentu pada tanggal tertentu dengan tetap memperhitungkan *financial sensitivity analysis*
+* Mempertimbangkan adanya iklan dalam aplikasi bagi pelanggan *casual* dan melakukan analisa harga *advertisement* sesuai dengan *traffic* aplikasi (perusahaan yang mengiklankan produk atau jasa-nya di kisaran *peak hour* akan terkena rate lebih mahal dibandingkan dengan *usual hour*). Hal ini akan berguna juga untuk menarik pelanggan *casual* menjadi *registered user*.
+* Pemberian promo ketika Summer time, bisa menjadi opsi yang dijalankan. Ada promo yang diadakan dalam peak hour juga akan membantu dalam menambah user baru. Hour menjadi fitur yang berpengeruh signifikan. Maka dari itu pemberian promo ketika peak hour sebagai contoh ketika pagi dan sore di hari kerja dan pagi hari saat hari libur akan memberikan benefit.
+* Menurut Shi & Sten (2020), *planning* merupakan hal yang sangat krusial dalam bike sharing. Hal yang paling penting adalah mengerti keperluan konsumen, supply dan realokasi sepeda. Terdapat ketimpangan antar dock yang terbangun. Maka dari itu, kami sarankan untuk Divisi Operasional agar memfokuskan alokasi sepeda pada stasiun dengan kebarangkatan yang tinggi. Serta menfokuskan armada untuk mengambil sepeda dari dock kedatangan tertinggi setiap pergantian weekend&weekday. Hal ini dilakukan untuk menghemat biaya operasional untuk redistribusi sepeda.
+
+**Rekomendasi Perbaikan atau Pengembangan Model**
+
+Kami sadar bahwa model yang kami buat memiliki keterbatasan. Maka dari itu, hal-hal yang dapat dilakukan untuk mengembangkan model agar lebih baik lagi adalah sebagai berikut:
+* Menggunakan data terbaru yang dimiliki Capital Bike Share dimana data yang kami gunakan merupakan hasil observasi tahun 2011 - 2012 sehingga apabila dipakai untuk memprediksi tahun terkini akan lebih baik jika menggunakan data yang lebih dekat. Karena, situasi dan kondisi akan berbeda. Terlebih karena gap rentang waktu yang jauh.
+* Jika memungkinkan, penambahan fitur yang lebih detail seperti jarak dock/station dengan moda transportasi massl lain. Seperti yang diketahui bahwa pengguna layanan sebagian besar melakukan aktifitas commuter. Informasi seperti itu akan sangat berharga bila kita ingin melakukan planning
+* Penambahan banyak data, perlu dicoba untuk test set menggunakan data terbaru pada kurun waktu satu tahun. Training set dan test set yang diatur secara berkesniambungan akan memperlihatkan performa model yang lebih mendekati dengan prediksi aktual.
+* Model yang sudah dibangun ini bisa dimanfaatkan untuk pengembangan pembuatan model lainnya. Contohnya seperti pembuatan model untuk memprediksi demand per-Dock/Station. Sehingga,  Pembuatan model ini dapat dipakai untuk melihat scope yang lebih kecil lagi. Dimana, hal tersebut akan menjadi meningkatkan efisiensi biaya. Distribusi sepeda akan jauh lebih baik dengan cost redistribusi yang dapat ditekan
+* Model dapat berguna untuk perencanaan program apabila perusahaan ingin melakukan expansi ke wilayah dengan kondisi iklim yang mendekati lokus penelitian 
