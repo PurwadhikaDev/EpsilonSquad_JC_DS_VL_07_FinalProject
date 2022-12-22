@@ -8,14 +8,6 @@ Disusun oleh:
 
 Pada akhir Program Job Connector Data Science di Purwadhika, kami diharuskan untuk melakukan analisa terkait data dari Capital Bike Sharing yaitu data demand persewaan sepeda dengan fitur-fitur lainnya seperti kondisi cuaca, kelembaban udara, data suhu, dan banyak fitur-fitur lainnya. Data yang digunakan adalah data time-series dimana setiap row mewakili satuan waktu tertentu dan dalam satuan waktu tersebut, terdapat record fitur-fitur yang ada.
 
-# Contents
-1. Business Problem Understanding
-2. Data Understanding
-3. Data Preprocessing & Cleaning
-4. Data Analytics
-5. Modeling
-6. Conclusion & Suggestion
-
 # Business Problem Understanding
 
 **Capital Bikeshare** adalah sebuah sistem *bikesharing* di Amerika Serikat yang memungkinkan pengguna untuk meminjam dan mengembalikan sepeda di berbagai lokasi di kota. Sistem ini dikelola oleh Motivate, sebuah perusahaan yang mengelola berbagai sistem *bikesharing* di seluruh dunia. Sistem ini memungkinkan pengguna untuk meminjam sepeda di suatu lokasi dan mengembalikannya di lokasi lain dan ditujukan untuk memberikan solusi bagi orang-orang yang ingin bersepeda namun tidak memiliki sepeda pribadi atau tidak memiliki tempat untuk menyimpannya.
@@ -36,19 +28,27 @@ Berdasarkan dari latar belakang dan konteks permasalahan yang telah dijabarkan d
 
 
 **Attributes Information**
-| **Attribute** | **Data Type** | **Description** |
-| --- | --- | --- |
-| dteday | Datetime | Tanggal |
-| hum | Float | Normalized humidity. The values are divided to 100 (max) |
-| weathersit | Integer |  weather  <br>1 =  Clear, Few clouds, Partly cloudy, Partly cloudy<br>2 = Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist<br>3 = Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain +   Scattered clouds<br>4 = Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog|
-| holiday | Integer | holiday or not |
-| season | Integer | season <br>1: winter<br>2: spring<br>3: summer<br>4: fall |
-| atemp | Float | Normalized feeling temperature in Celsius. The values are derived via (t-tmin)/(tmax-tmin), tmin=-16, t_max=+50 (only in hourly scale) |
-| temp | Float | Normalized temperature in Celsius. The values are derived via (t-tmin)/(tmax-tmin), tmin=-8, t_max=+39 (only in hourly scale) |
-| hr | Integer | hour (0 to 23) |
-| casual | Integer | count of casual users |
-| registered | Integer | count of registered users |
-| cnt | Integer | count of total rental bikes including both casual and registered |
+1. **instant** : Record index
+2. **dteday** : Tanggal
+3. **season** : Season / Musim (1:spring, 2:summer, 3:fall, 4:winter)
+4. **yr** : Tahun (0: 2011, 1:2012)
+5. **mnth** : Bulan (1 to 12)
+6. **hr** : Jam (0 to 23) 
+7. **holiday** : merepresentasikan pada hari tersebut libur selain weekend(data hasil ekstraksi dari Holiday Schedule Washington D.C)
+8. **weekday** : Day of the week, hari sabtu dan minggu adalah 6 & 0
+9. **workingday** :  Bila hari tersebut bukan hari libur atau weekend maka : 1, Selain itu is 0.
+10. **weathersit** : (data di-extract dari situs Freemeteo)
+    *   1: Clear, Few clouds, Partly cloudy, Partly cloudy
+    *   2: Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist
+    *   3: Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds
+    *   4: Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog
+11. **temp** : Temperature dalam Celsius yang telah melalui proses Normalisasi. The values are derived via (t-tmin)/(tmax-tmin), tmin=-8, t_max=+39 (only in hourly scale)
+12. **atemp** : feels-like temperature dalam skala Celsius. The values are derived via (t-tmin)/(tmax-tmin), tmin=-16, t_max=+50 (only in hourly scale)
+13. **hum** : Kelembaban yang telah melalui proses Normalisasi. The values are divided to 100 (max)
+14. **windspeed** : Kecepatan angin. The values are divided to 67 (max)
+15. **casual** : Jumlah dari user non-member
+16. **registered** : Jumlah dari user member
+17. **cnt** : Total dari jumlah user casual dan registered
 
 # Data Preprocessing & Cleaning
 * Menambah fitur month, year, weekday yang diambil dari dteday untuk memperudah analisis
