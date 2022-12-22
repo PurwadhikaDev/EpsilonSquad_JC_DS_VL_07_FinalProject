@@ -52,9 +52,11 @@ Berdasarkan dari latar belakang dan konteks permasalahan yang telah dijabarkan d
 
 # Data Preprocessing & Cleaning
 * Menambah fitur month, year, weekday yang diambil dari dteday untuk memperudah analisis
-* Menghapus feature atemp, dteday, casual, dan registered karena tidak akan digunakan pada Machine Learning
-* Menghapus nilai-nilai dari fitur yang bersifat tidak wajar
-* Melakukan encoding pada feature weathersit, season, dan weekday
+* Menghapus feature atau kolom atemp, dteday, casual, dan registered karena tidak akan digunakan pada Machine Learning
+* Melihat apakah ada missing values
+* Melakukan correcting data types
+
+# Data Analytics
 
 # Conclusion & Recommendation
 **Data Analytics Executive Summary**
