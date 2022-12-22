@@ -11,12 +11,10 @@ Pada akhir Program Job Connector Data Science di Purwadhika, kami diharuskan unt
 # Contents
 1. Business Problem Understanding
 2. Data Understanding
-3. Exploratory Data Analysis
-4. Data Preprocessing & Cleaning
-5. Data Analytics
-6. Feature Engineering
-7. Modeling
-8. Conclusion & Suggestion
+3. Data Preprocessing & Cleaning
+4. Data Analytics
+5. Modeling
+6. Conclusion & Suggestion
 
 # Business Problem Understanding
 
@@ -33,9 +31,10 @@ Berdasarkan dari latar belakang dan konteks permasalahan yang telah dijabarkan d
 *   Dengan menggunakan *machine learning*, dapatkah perusahaan memprediksi banyaknya demand penyewaan sepeda sehingga dapat meminimalisir stock sepeda yang berlebih atau kehilangan konsumen karena stock sepeda tidak tersedia? 
 
 # Data Understanding
-*   Dataset merupakan data jumlah penyewaan sepeda pada tahun 2011-2012 di Amerika
-*   Setiap baris data merepresentasikan informasi terkait penyewaan sepeda per hari
-*   
+*   Dataset merupakan data jumlah penyewaan sepeda pada tahun 2011-2012 dari perusahaan Capital Bike Share di Washington DC, Amerika Serikat
+*   Setiap baris data merepresentasikan informasi terkait penyewaan sepeda dalam satuan waktu (untuk database hour per jam dan untuk database day per hari)
+
+
 **Attributes Information**
 | **Attribute** | **Data Type** | **Description** |
 | --- | --- | --- |
@@ -51,11 +50,10 @@ Berdasarkan dari latar belakang dan konteks permasalahan yang telah dijabarkan d
 | registered | Integer | count of registered users |
 | cnt | Integer | count of total rental bikes including both casual and registered |
 
-# Data Preprocessing
+# Data Preprocessing & Cleaning
 * Menambah fitur month, year, weekday yang diambil dari dteday untuk memperudah analisis
 * Menghapus feature atemp, dteday, casual, dan registered karena tidak akan digunakan pada Machine Learning
 * Menghapus nilai-nilai dari fitur yang bersifat tidak wajar
-* Menghapus data-data outlier
 * Melakukan encoding pada feature weathersit, season, dan weekday
 
 # Conclusion & Recommendation
