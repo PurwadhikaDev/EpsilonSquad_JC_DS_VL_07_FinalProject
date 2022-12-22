@@ -57,6 +57,15 @@ Berdasarkan dari latar belakang dan konteks permasalahan yang telah dijabarkan d
 * Melakukan correcting data types
 
 # Data Analytics
+* Persentase Kategori User
+* Analisa Trend
+* Analisa Durasi Bersepeda
+* Hubungan Musim & Kondisi Cuaca dengan Jumlah Penyewaan
+* Analisa Penyewaan per-Hari
+* Analisa Penyewaan per-Bulan
+* Analisa Hubungan Temperatur dengan Penyewaan
+* Analisa Hari Libur Nasional & Libur Negara Bagian
+* Analisa Stasiun & Dock
 
 # Conclusion & Recommendation
 **Data Analytics Executive Summary**
